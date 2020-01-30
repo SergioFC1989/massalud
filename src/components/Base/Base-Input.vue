@@ -1,17 +1,19 @@
 <template>
-    <div>
-        <b-field :label="label" :message="message" :label-position="labelPosition">
-                <b-input
-                :icon="icon"
-                :placeholder="placeholder" 
-                :password-reveal="pass"
-                :type="type"
-                :name="name" 
-                :v-validate="valid"
+    <b-field
+            :label="label" 
+            :label-position="labelPosition"
+        >
+            <b-input
                 @input="$emit('onInput', $event)"
-                /> 
+                :icon="icon"
+                :type="type"
+                :placeholder="placeholder"
+                :password-reveal="pass"
+                :name="name"
+                :ref="name"
+                required
+            />
         </b-field>
-    </div>
 </template>
 <script>
 export default {
@@ -21,14 +23,6 @@ export default {
             type: String,
         },
         type: {
-            type: String,
-            validator: val => {
-                return (
-                    ["url", "text", "password", "email", "search"].indexOf(val) !== -1
-                );
-            }
-        },
-        message: {
             type: String,
         },
         labelPosition: {
@@ -45,10 +39,7 @@ export default {
         },
         name: {
             type: String,
-        },
-        valid: {
-            type: String,
-        },
+        }
     }
 }
 </script>
